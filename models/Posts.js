@@ -15,10 +15,10 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    //location: {
+      //type: DataTypes.STRING,
+      //allowNull: false,
+    //},
     content: {
       type: DataTypes.STRING,
     },
