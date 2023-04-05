@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>Your Dashboard</h2>
+  </div>
+  <div class="new-post-form col-md-12" id="new-post-form">
+    <h3>Create New Post</h3>
+    <form class="form new-post-form">
+      <div class="form-group">
+        <label for="post-title">Title</label>
+        <input class="form-input" type="text" id="post-title" name="post-title" />
+      </div>
+      <div class="form-group">
+        <label for="post-content">Content</label>
+        <textarea class="form-input" id="post-content" name="post-content"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+  {{#if posts.length}}
+  <div class="col-md-12 post-list">
+    {{#each posts as |post|}}
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <h4><a href="/post/{{posts.id}}">{{posts.title}} {{format_date posts.date_created}}</a></h4>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+<div class="new-post col-md-12 text-center">
+  <button class="btn btn-primary">New Post</button>
+</div>
+
+
+{{!-- <script src="./js/dashboard.js"></script> --}}
