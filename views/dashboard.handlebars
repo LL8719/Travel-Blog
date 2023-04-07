@@ -18,12 +18,13 @@
       </div>
     </form>
   </div>
+
   {{#if posts.length}}
   <div class="col-md-12 post-list">
     {{#each posts as |post|}}
     <div class="row mb-2">
       <div class="col-md-12">
-        <h4><a href="/post/{{posts.id}}">{{posts.title}} {{format_date posts.date_created}}</a></h4>
+        <h4><a href="/post/{{posts.id}}">{{post.title}} {{format_date post.date_created}}</a></h4>
       </div>
     </div>
     {{/each}}
@@ -35,4 +36,4 @@
 </div>
 
 
-{{!-- <script src="./js/dashboard.js"></script> --}}
+<script src="./js/dashboard.js"></script>
