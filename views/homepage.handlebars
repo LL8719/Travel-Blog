@@ -1,14 +1,14 @@
 <!-- Loop over each object in the posts array -->
 {{#each posts as |post| }}
-<div class="row mb-4 post">
-  <div class="col-md-12">
+<div class="post">
+  <div>
     <h2>
-      <a href="/allposts/{{post.id}}">{{post.title}}</a>
+      <a class="post-link" href="/allposts/{{post.id}}">{{post.title}}</a>
     </h2>
-    <p>Posted by {{post.user.username}} on {{format_date post.date_created}}</p>
+    <p class="post-author">Posted by {{post.user.username}} on {{format_date post.date_created}}</p>
   </div>
-  <div class="col-md-12">
-    <p>
+  <div>
+    <p class="post-content">
       {{post.content}}
     </p>
   </div>

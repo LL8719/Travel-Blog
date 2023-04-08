@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +9,33 @@
 </head>
 
 <body>
-  <div>
-    <header class="display-flex justify-space-between align-left p-2">
-      <h1>
-        <a href="/">Passport Adventures</a>
-      </h1>
-      <nav>
-        <a href="/homepage">Home</a>
-        <a href="/dashboard">Dashboard</a>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <button id="logout">Logout</button>
-        {{else}}
-        <a href="/login">Login</a>
-        {{/if}}
-      </nav>
-    </header>
-    <main class="container container-fluid mt-5">
-      <!-- Render the sub layout -->
-      {{{ body }}}
-    </main>
-    <footer>
+  <header>
+    <h1>
+      <a class="header-link" href="/">Passport Adventures</a>
+    </h1>
+    <nav>
+      <a class="nav-link" href="/homepage">Home</a>
+      <a class="nav-link" href="/dashboard">Dashboard</a>
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
+      <button class="btn" id="logout">Logout</button>
+      {{else}}
+      <a class="nav-link" href="/login">Login</a>
+      {{/if}}
+    </nav>
+  </header>
+  <main class="container container-fluid mt-5">
+    <!-- Render the sub layout -->
+    {{{ body }}}
+  </main>
+  <footer>
 
-    </footer>
-  </div>
-  
+  </footer>
+
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
+
 </html>
