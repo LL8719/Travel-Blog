@@ -41,6 +41,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
+// nodemailer
+
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'your_email_address',
+    pass: 'your_email_password',
+  },
+});
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
