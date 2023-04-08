@@ -52,7 +52,7 @@ router.get('/homepage', async (req, res) => {
   }
 });
 
-router.get('/allposts/:id', async (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Posts.findByPk(req.params.id, {
       include: [
@@ -65,9 +65,37 @@ router.get('/allposts/:id', async (req, res) => {
 
     const post = postData.get({ plain: true });
 
+    res.render('post', {
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/allposts/:id', withAuth, async (req, res) => {
+  try {
+    const postData = await Posts.findByPk(req.params.id, {
+      include: [
+        {
+          model: Users,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    if (post.user_id == req.session.user_id) {
+      res.redirect('/post/' + post.id);
+      return;
+    }
+
+
     res.render('allposts', {
       ...post,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -77,48 +105,16 @@ router.get('/allposts/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    const postData = await Posts.findAll({
-      where: {
-        user_id: req.session.user_id,
-      },
-      attributes: ['id', 'title', 'content', 'date_created', 'user_id'],
-      include: [
-        {
-          model: Comments,
-          attributes: [
-            'id',
-            'comment_body',
-            'date_created',
-            'user_id',
-            'post_id',
-          ],
-          include: {
-            model: Users,
-            attributes: ['username'],
-          },
-        },
-        {
-          model: Users,
-          attributes: ['username'],
-        },
-      ],
+    const userData = await Users.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Posts }],
     });
 
-    const posts = postData.map((posts) => {
-      const postObj = posts.get({ plain: true });
-      postObj.User = posts.User;
-      return postObj;
-    });
-
-    const user = await Users.findByPk(req.session.user_id);
-    const dashUser = user.get({
-      plain: true,
-    });
+    const user = userData.get({ plain: true });
 
     res.render('dashboard', {
-      posts,
-      user: dashUser,
-      logged_in: req.session.logged_in,
+      ...user,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);

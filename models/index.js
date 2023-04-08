@@ -3,6 +3,11 @@ const Posts = require('./Posts');
 const Comments = require('./Comments');
 const Likes = require('./Likes');
 
+Users.hasMany(Posts, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
 Posts.hasMany(Comments, {
   foreignKey: 'post_id',
   onDelete: 'CASCADE',
@@ -10,7 +15,6 @@ Posts.hasMany(Comments, {
 
 Posts.belongsTo(Users, {
   foreignKey: 'user_id',
-  onDelete: 'cascade',
 });
 
 Comments.belongsTo(Users, {
