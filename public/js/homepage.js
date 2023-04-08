@@ -1,13 +1,14 @@
-const title = document.querySelector('#post-title').value.trim();
-const content = document.querySelector('#post-content').value.trim();
-
 const commentButtonHandler = async (event) => {
+  event.preventDefault();
+
+const comment = document.querySelector('#post-comment').value.trim();
+
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/posts`, {
-      method: 'PUT',
-      body: JSON.stringify({ title, comment }),
+    const response = await fetch(`/api/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ comment }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -23,4 +24,4 @@ const commentButtonHandler = async (event) => {
 
 document
   .querySelector('.post-list')
-  .addEventListener('click', commentButtonHandler);
+  .addEventListener('submit', commentButtonHandler);

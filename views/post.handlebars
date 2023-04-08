@@ -1,0 +1,30 @@
+<!-- Edit existing post created by logged user -->
+<div class="text-left post-list">
+  <h3>{{title}} {{format_date date_created}}</h3>
+  <p>{{content}}</p>
+  <p>
+    <button class="btn btn-primary post-update" data-id="{{id}}">Update Post</button>
+  </p>
+    <p>
+    <button class="btn btn-primary post-delete" data-id="{{id}}">Delete</button>
+  </p>
+</div>
+
+<div class="old-post-form col-md-12" style="display: none" id="old-post-form">
+    <h2>Edit Post</h2>
+    <form class="form old-post-form">
+      <div class="form-group">
+        <label for="post-title">Title</label>
+        <input class="form-input" type="text" id="post-title" name="post-title" value="{{title}}" />
+      </div>
+      <div class="form-group">
+        <label for="post-content">Content</label>
+        <textarea class="form-input" id="post-content" name="post-content">{{content}}</textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary form-save" data-id="{{id}}">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/js/post.js"></script>

@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <h2>Your Dashboard</h2>
   </div>
-  <div class="new-post-form col-md-12" id="new-post-form">
+  <div class="new-post-form col-md-12" style="display: none" id="new-post-form">
     <h3>Create New Post</h3>
     <form class="form new-post-form">
       <div class="form-group">
@@ -24,7 +24,7 @@
     {{#each posts as |post|}}
     <div class="row mb-2">
       <div class="col-md-12">
-        <h4><a href="/post/{{posts.id}}">{{post.title}} {{format_date post.date_created}}</a></h4>
+        <h4><a href="/post/{{post.id}}">{{post.title}} {{format_date post.date_created}}</a></h4>
       </div>
     </div>
     {{/each}}
@@ -36,4 +36,4 @@
 </div>
 
 
-<script src="./js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>
