@@ -10,7 +10,7 @@
     {{#each comments as |comment|}}
     <div class="row mb-2">
       <div class="col-md-12">
-        <h4><a href="/comment/{{comment.id}}">{{comment.user.username}} {{format_date comment.date_created}}</a></h4>
+        <h4><a href="/post/{{post.id}}">{{comment.user.username}} {{format_date comment.date_created}}</a></h4>
       </div>
     </div>
     {{/each}}
@@ -20,7 +20,7 @@
     <form class="form existing-post-form" data-id="{{id}}">
       <div class="form-group">
         <label for="post-comment">Comment</label>
-        <textarea class="form-input" id="post-comment" name="post-comment">{{comment}}</textarea>
+        <textarea class="form-input" id="post-comment" name="post-comment">{{comment post.comment}}</textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary form-save" data-id="{{id}}">Submit</button>

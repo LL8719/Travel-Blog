@@ -8,7 +8,7 @@ const comment = document.querySelector('#post-comment').value.trim();
 
     const response = await fetch(`/api/comments`, {
       method: 'POST',
-      body: JSON.stringify({ comment }),
+      body: JSON.stringify({ post_id, comment_text }),
       headers: {
         'Content-Type': 'application/json',
       },
