@@ -1,7 +1,7 @@
 const commentButtonHandler = async (event) => {
   event.preventDefault();
 
-const comment = document.querySelector('#post-comment').value.trim();
+  const comment = document.querySelector('#post-comment').value.trim();
 
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
