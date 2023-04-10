@@ -83,7 +83,7 @@ nav {
 }
 
 .post-page {
-  margin: 10px 10px 0 10px;
+  margin: 10px;
 }
 
 main {
@@ -104,50 +104,37 @@ main {
 
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 412px) {
   header {
-    justify-content: space-between;
-    text-align: left;
-    padding: 30px 60px 30px 30px;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    flex-direction: column;
   }
 
   .header-link {
-    font-size: 30pt;
+    font-size: 28pt;
   }
 
   header nav {
     flex-wrap: wrap;
-    justify-content: right;
-  }
-
-  .nav-link {
-    margin: 5px 0 5px 1px;
+    justify-content: center;
+    padding-top: 20px;
   }
 
   .post {
-    margin: 15px 0 5px 10px;
-    font-size: 16pt;
+    font-size: 14pt;
   }
-  
+
   .post-link {
-    text-decoration: underline;
-    color: darkblue;
-  
+    font-size: 20pt;
   }
-  
-  .post-link:hover {
-    font-style: oblique;
-    color: rgb(90, 11, 155);
-  }
-  
+    
   .post-author {
-    margin: 5px;
-    font-weight: bold;
     font-size: 14pt;
   }
   
   .post-content {
-    margin: 5px;
     font-size: 12pt;
   }
 
@@ -175,7 +162,6 @@ main {
   }
 
   .post {
-    margin: 15px 0 5px 10px;
     font-size: 10pt;
   }
 
@@ -188,6 +174,22 @@ main {
   }
   
   .post-content {
+    font-size: 12pt;
+  }
+
+  .allposts-title {
+    font-size: 20pt;
+  }
+
+  .allposts-author {
+    font-size: 16pt;
+  }
+
+  .userpost-title {
+    font-size: 18pt;
+  }
+
+  .userpost-content {
     font-size: 12pt;
   }
 }
