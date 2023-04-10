@@ -1,17 +1,36 @@
+<!-- Filter results -->
+<div class="col-md-12 ">
+  <div class="row">
+    <input type="text" id="byLocation" name="byLocation">
+  </div>
+  <div class="row">
+    <input type="checkbox" id="petFriendly" name="petFriendly">
+    <label for="petFriendly">🐕‍🦺</label><br>
+    <input type="checkbox" id="familyFriendly" name="familyFriendly">
+    <label for="familyFriendly">👶</label><br>
+    <button type="click" class="btn btn-primary filter-group">Search!</button>
+  </div>
+</div>
 <!-- Loop over each object in the posts array -->
 {{#each posts as |post| }}
-<div class="post">
-  <div>
+<div class="row mb-4 post">
+  <div class="col-md-12">
     <h2>
-      <a class="post-link" href="/allposts/{{post.id}}">{{post.title}}</a>
+      <a href="/allposts/{{post.id}}">{{title}}</a>
     </h2>
-    <p class="post-author">Posted by {{post.user.username}} on {{format_date post.date_created}}</p>
+    <p>Posted by {{user.username}} on {{format_date date_created}}</p>
   </div>
-  <div>
-    <p class="post-content">
-      {{post.content}}
+  <div class="col-md-12">
+  <p>{{location}}</p>
+    <p>
+      {{content}}
     </p>
-    
+  </div>
+  <div class="row mb-4 likes-group">
+    <button type="click" class="btn btn-primary" like-value=1 data-id={{id}}>👍{{Liked.length}}</button>
+    <button type="click" class="btn btn-primary" like-value=-1 data-id={{id}}>👎{{Disliked.length}}</button>
   </div>
 </div>
 {{/each}}
+
+<script src="/js/homepage.js"></script>

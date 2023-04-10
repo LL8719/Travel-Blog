@@ -1,10 +1,17 @@
 const newPostHandler = async (event) => {
   event.preventDefault();
 
-  const newPost = document.querySelector('#new-post');
+  const newPost = document.querySelector('.create-button');
   const postForm = document.getElementById('new-post-form');
   
-  postForm.style.display = "block";
+  if(newPost.innerText == "New Post"){
+    postForm.style.display = "block";
+    newPost.innerText = "Cancel";
+  }
+  else{
+    postForm.style.display = "none";
+    newPost.innerText = "New Post";
+  }
 }
 
 const newFormHandler = async (event) => {
@@ -12,11 +19,14 @@ const newFormHandler = async (event) => {
   
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
+    const location = document.querySelector('#byLocation').value.trim();
+    const petFriendly = document.querySelector('#petFriendly').checked;
+    const familyFriendly = document.querySelector('#familyFriendly').checked;
   
     if (title && content) {
       const response = await fetch(`/api/posts`, {
         method: 'POST',
-        body: JSON.stringify({ title, content }),
+        body: JSON.stringify({ title, content, location, petFriendly, familyFriendly }),
         headers: {
           'Content-Type': 'application/json',
         },
