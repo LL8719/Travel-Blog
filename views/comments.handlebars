@@ -1,0 +1,14 @@
+<div class="row">
+  {{#if comments.length}}
+  <div class="col-md-12">
+    {{#each comments as |comment|}}
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <h4>{{user.username}} {{format_date comment.date_created}}</h4>
+        <p>{{comment_text}}</p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>

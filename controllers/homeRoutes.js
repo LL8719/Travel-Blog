@@ -1,28 +1,11 @@
 const router = require('express').Router();
-const { Posts, Users, Comments } = require('../models');
+const { Posts, Users, Comments, Likes } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Get all posts from root
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const postData = await Posts.findAll({
-      include: [
-        {
-          model: Users,
-          attributes: ['username'],
-        },
-      ],
-    });
-
-    // Serialize data so the template can read it
-    const posts = postData.map((post) => post.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('homepage', {
-      posts,
-      logged_in: req.session.logged_in,
-    });
+    res.redirect('/homepage');
   } catch (err) {
     res.status(500).json(err);
   }
@@ -31,15 +14,111 @@ router.get('/', async (req, res) => {
 // Get all posts from homepage
 router.get('/homepage', async (req, res) => {
   try {
+    let postData;
+    console.debug(req.query);
+    // Filters for the search query
+    if(req.query.petFriendly && req.query.familyFriendly){
+      
+      postData = await Posts.findAll({
+        where: {petFriendly: true, familyFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }
+    else if(req.query.petFriendly){
+      postData = await Posts.findAll({
+        where: {petFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }
+    else if(req.query.familyFriendly){
+      postData = await Posts.findAll({
+        where: {familyFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }
+    else{
     // Get all posts and JOIN with user data
-    const postData = await Posts.findAll({
+    postData = await Posts.findAll({
+      where: req.query,
       include: [
         {
           model: Users,
           attributes: ['username'],
         },
+        {
+          model: Likes,
+          attributes: ['id', 'value', 'user_id', 'post_id'],
+          where: { value: 1 },
+          as: "Liked",
+          required: false
+        },
+        {
+          model: Likes,
+          attributes: ['id', 'value', 'user_id', 'post_id'],
+          where: { value: -1 },
+          as: "Disliked",
+          required: false
+        },
       ],
     });
+    }
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
@@ -86,6 +165,14 @@ router.get('/allposts/:id', withAuth, async (req, res) => {
           model: Users,
           attributes: ['username'],
         },
+        {
+          model: Comments,
+          attributes: ['id', 'comment_text', 'date_created', 'user_id', 'post_id'],
+          include: {
+            model: Users,
+            attributes: ['username'],
+          },
+        },
       ],
     });
 
@@ -99,37 +186,6 @@ router.get('/allposts/:id', withAuth, async (req, res) => {
     res.render('allposts', {
       ...post,
       logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Get all comments
-// Need to pull comments that are linked to a post - do I need a route to pull all the comments with their associated posts, or pull a comment by id (by the post's ID?)
-router.get('/comments', withAuth, async (req, res) => {
-  try {
-    // Get all blog posts and JOIN with user data
-    const commentData = await Comments.findAll({
-      include: [
-        {
-          model: Users,
-          attributes: ['username'],
-        },
-        {
-          model: Posts,
-          atributes: ['id'],
-        }
-      ],
-    });
-
-    // Serialize data so the template can read it
-    const comments = commentData.map((comment) => comment.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('allposts', { 
-      comments, 
-      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -151,6 +207,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       logged_in: true
     });
   } catch (err) {
+    console.debug(err);
     res.status(500).json(err);
   }
 });
@@ -166,3 +223,41 @@ router.get('/login', (req, res) => {
 });
 
 module.exports = router;
+
+
+/*Graveyard
+
+// Get all comments
+router.get('/comments', withAuth, async (req, res) => {
+  try {
+    // Get all blog posts and JOIN with user data
+    const commentData = await Comments.findAll({
+      where: {
+        post_id: 1,
+      },
+      include: [
+        {
+          model: Users,
+          attributes: ['username'],
+        },
+        {
+          model: Posts,
+          atributes: ['id'],
+        }
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('comments', { 
+      comments, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+*/

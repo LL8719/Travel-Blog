@@ -15,10 +15,10 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    //location: {
-      //type: DataTypes.STRING,
-      //allowNull: false,
-    //},
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     content: {
       type: DataTypes.STRING,
     },
@@ -33,6 +33,30 @@ Post.init(
         model: 'user',
         key: 'id',
       },
+    },
+    comment_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'comment',
+        key: 'id',
+      },
+    },
+    like_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'like',
+        key: 'id',
+      },
+    },
+    petFriendly: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
+    familyFriendly: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
     },
   },
   {

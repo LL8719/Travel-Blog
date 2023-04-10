@@ -10,11 +10,14 @@ const updateButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
         const title = document.querySelector('#post-title').value.trim();
+        const location = document.querySelector('#byLocation').value.trim();
+        const petFriendly = document.querySelector('#petFriendly').checked;
+        const familyFriendly = document.querySelector('#familyFriendly').checked;
         const content = document.querySelector('#post-content').value.trim();
 
         const response = await fetch(`/api/posts/${id}`, {
             method: 'PUT',
-            body: JSON.stringify({ title, content }),
+            body: JSON.stringify({ title, location, petFriendly, familyFriendly, content }),
             headers: {
                 'Content-Type': 'application/json',
             },
