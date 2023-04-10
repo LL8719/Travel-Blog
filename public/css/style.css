@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
 }
 
 /* Style for header */
@@ -31,37 +31,25 @@ nav {
 }
 
 .nav-link {
-  border: solid 1px black;
-  padding: 10px;
+  padding: 0;
   margin: 10px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   text-decoration: none;
-  color: rgb(3, 70, 33);
-  font-weight: bold;
-  font-size: 12pt;
-  background-color: #9b9b9b;
 }
 
-.nav-link:hover {
-  background-color: maroon;
-  color: whitesmoke;
 
-}
 
 /* Style for logout button */
 #logout {
-  background-color: #333;
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  padding: 5px;
+  padding: 0 25px 0 25px;
+  text-align: center;
 }
 
-#logout:hover {
+/* #logout:hover {
   background-color: #f2f2f2;
   color: #333;
-}
+} */
 
 /* homepage */
 
