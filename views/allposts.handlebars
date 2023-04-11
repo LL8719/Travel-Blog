@@ -4,23 +4,11 @@
     <h3 class="allposts-author">Posted By {{user.username}} on {{format_date date_created}}</h3>
   <p>{{content}}</p>
 </div>
-<div class="row">
-{{#if comments.length}}
-  <div class="col-md-12">
-    {{#each comments as |comment|}}
-    <div class="row mb-2">
-      <div class="col-md-12">
-        <h4><a href="/comment/{{comment.id}}">{{comment.user.username}} {{format_date comment.date_created}}</a></h4>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}} 
   <div class="col-md-12 post-list">
     <form class="form existing-post-form" data-id="{{id}}">
       <div class="form-group">
         <label for="post-comment">Comment</label>
-        <textarea class="form-input" id="post-comment" name="post-comment">{{comment}}</textarea>
+        <textarea class="form-input" id="post-comment" name="post-comment"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary form-save" data-id="{{id}}">Submit</button>
@@ -32,5 +20,22 @@
    <a href="/share?postTitle={{title}}&postContent={{content}}">Click here to share the post</a>
 
   </div>
+</div>
 
-  <script src="/js/homepage.js"></script>
+<div class="row">
+  {{#if comments.length}}
+  <div class="col-md-12">
+    {{#each comments as |comment|}}
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <h4>{{comment.user.username}} {{format_date comment.date_created}}</h4>
+            <p>{{comment_text}}</p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+
+  <script src="/js/allposts.js"></script>
