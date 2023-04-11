@@ -7,6 +7,12 @@
   <title>Passport Adventures</title>
   <link rel="icon" href="../../Images/Passport.jpg" />
   <link rel="stylesheet" href="/css/style.css" />
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <!-- Milligram CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 </head>
 
 <body>
@@ -15,17 +21,17 @@
       <a class="header-link" href="/">✈️ Passport Adventures</a>
     </h1>
     <nav>
-      <a class="nav-link" href="/homepage">Home</a>
-      <a class="nav-link" href="/dashboard">Dashboard</a>
+      <a class="nav-link" href="/homepage"><button>Home</button></a>
+      <a class="nav-link" href="/dashboard"><button>Dashboard</button></a>
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
-      <button class="btn" id="logout">Logout</button>
+      <button class="nav-link" id="logout">Logout</button>
       {{else}}
-      <a class="nav-link" href="/login">Login</a>
+      <a class="nav-link" href="/login"><button>Login</button></a>
       {{/if}}
     </nav>
   </header>
-  <main class="container container-fluid mt-5">
+  <main class="container container-fluid">
     <!-- Render the sub layout -->
     {{{ body }}}
   </main>

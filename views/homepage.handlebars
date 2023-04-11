@@ -1,13 +1,17 @@
 <!-- Filter results -->
-<div class="col-md-12 ">
+<div class="homepage">
   <div class="row">
-    <input type="text" id="byLocation" name="byLocation">
+    <input type="text" id="byLocation" name="byLocation" placeholder="Enter a City">
   </div>
-  <div class="row">
-    <input type="checkbox" id="petFriendly" name="petFriendly">
-    <label for="petFriendly">🐕‍🦺</label><br>
-    <input type="checkbox" id="familyFriendly" name="familyFriendly">
-    <label for="familyFriendly">👶</label><br>
+  <div class="type-search">
+    <div class="pet">
+      <input type="checkbox" id="petFriendly" name="petFriendly">
+      <label for="petFriendly">🐕‍🦺</label><br>
+    </div>
+    <div class="family">
+      <input type="checkbox" id="familyFriendly" name="familyFriendly">
+      <label for="familyFriendly">👶</label><br>
+    </div>
     <button type="click" class="btn btn-primary filter-group">Search!</button>
   </div>
 </div>

@@ -23,11 +23,8 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
-<<<<<<< HEAD
     "nodemon": "^2.0.22",
-=======
     "nodemailer": "^6.9.1",
->>>>>>> 3d7ba38471a624ef33705204c4944cbe96d551cb
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
