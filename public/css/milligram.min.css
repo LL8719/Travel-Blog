@@ -212,8 +212,8 @@ input:not([type]),
 textarea,
 select {
     background-color: transparent;
-    border: 0.1rem solid #d1d1d1;
-    border-radius: .4rem;
+    border: 2px solid #803a3a;
+    border-radius: 5px;
     box-shadow: none;
     box-sizing: inherit;
     height: 3.8rem;

@@ -89,6 +89,18 @@ nav {
   flex-direction: row;
 }
 
+.all-comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  border: solid 1px black;
+  margin: 2px;
+  padding: 2px;
+  width: auto;
+}
+
 .homepage {
   margin: 10px 10px 0 10px;
 }
@@ -108,6 +120,7 @@ nav {
 main {
   margin: 20px;
 }
+
 
 @media screen and (max-width: 900px) {
   header {
