@@ -33,8 +33,18 @@
   <div class="likes-group">
     <button type="click" like-value=1 data-id={{id}}>👍{{Liked.length}}</button>
     <button type="click" like-value=-1 data-id={{id}}>👎{{Disliked.length}}</button>
+
+
   </div>
+
+
+</div>
+
+  <div>
+ <a class="share" href="/share?postTitle={{title}}&postContent={{content}}"><button>Click here to share this</button></a>
 </div>
 {{/each}}
 
 <script src="/js/homepage.js"></script>
+
+<script src="/js/allposts.js"></script>
