@@ -1,6 +1,6 @@
 <!-- Filter results -->
 <div class="homepage">
-  <div class="row">
+  <div>
     <input type="text" id="byLocation" name="byLocation" placeholder="Enter a City">
   </div>
   <div class="type-search">
@@ -17,15 +17,15 @@
 </div>
 <!-- Loop over each object in the posts array -->
 {{#each posts as |post| }}
-<div class="row mb-4 post">
-  <div class="col-md-12">
+<div class="post">
+  <div>
     <h2>
       <a class="post-link" href="/allposts/{{post.id}}">{{title}}</a>
     </h2>
     <p class="post-author">Posted by {{user.username}} on {{format_date date_created}}</p>
   </div>
   <div>
-  <p>{{location}}</p>
+  <p class="post-location">{{location}}</p>
     <p class="post-content">
       {{content}}
     </p>

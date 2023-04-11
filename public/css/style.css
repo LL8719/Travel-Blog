@@ -48,14 +48,14 @@ nav {
 /* homepage */
 
 .post {
-  margin: 15px 0 5px 10px;
+  margin: 0;
   font-size: 16pt;
 }
 
 .post-link {
   text-decoration: underline;
   color: darkblue;
-
+  margin: 0;
 }
 
 .post-link:hover {
@@ -64,13 +64,17 @@ nav {
 }
 
 .post-author {
-  margin: 5px;
+  margin: 0;
   font-weight: bold;
   font-size: 14pt;
 }
 
+.post-location {
+  margin: 0;
+}
+
 .post-content {
-  margin: 5px;
+  margin: 0;
   font-size: 12pt;
 }
 
