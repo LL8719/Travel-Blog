@@ -17,7 +17,81 @@ router.get('/homepage', async (req, res) => {
     let postData;
     console.debug(req.query);
     // Filters for the search query
-    if(req.query.petFriendly && req.query.familyFriendly){
+    if(req.query.location != "" && req.query.petFriendly && req.query.familyFriendly){
+      postData = await Posts.findAll({
+        where: {location: req.query.location, petFriendly: true, familyFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }else if(req.query.location != "" && req.query.familyFriendly){
+      console.debug(req.query.location);
+      postData = await Posts.findAll({
+        where: {location: req.query.location, familyFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }else if(req.query.location != "" && req.query.petFriendly){
+      
+      postData = await Posts.findAll({
+        where: {location: req.query.location, petFriendly: true},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }else if(req.query.petFriendly && req.query.familyFriendly){
       
       postData = await Posts.findAll({
         where: {petFriendly: true, familyFriendly: true},
@@ -92,11 +166,34 @@ router.get('/homepage', async (req, res) => {
           },
         ],
       });
-    }
-    else{
+    }else if(req.query.location && req.query.location != ""){
+      console.debug(req.query.location);
+      postData = await Posts.findAll({
+        where: {location: req.query.location},
+        include: [
+          {
+            model: Users,
+            attributes: ['username'],
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: 1 },
+            as: "Liked",
+            required: false
+          },
+          {
+            model: Likes,
+            attributes: ['id', 'value', 'user_id', 'post_id'],
+            where: { value: -1 },
+            as: "Disliked",
+            required: false
+          },
+        ],
+      });
+    }else{
     // Get all posts and JOIN with user data
     postData = await Posts.findAll({
-      where: req.query,
       include: [
         {
           model: Users,
@@ -119,7 +216,6 @@ router.get('/homepage', async (req, res) => {
       ],
     });
     }
-
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
