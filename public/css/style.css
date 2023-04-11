@@ -74,6 +74,25 @@ nav {
   font-size: 12pt;
 }
 
+.type-search {
+  display: flex;
+  flex-direction: row;
+}
+
+.pet {
+  display: flex;
+  flex-direction: row;
+}
+
+.family {
+  display: flex;
+  flex-direction: row;
+}
+
+.homepage {
+  margin: 10px 10px 0 10px;
+}
+
 .login-page {
   margin: 10px 10px 0 10px;
 }
