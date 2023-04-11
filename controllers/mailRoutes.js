@@ -1,5 +1,19 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+
+// Retrieve email address and password from environment variables
+const emailAddress = process.env.EMAIL_ADDRESS;
+const emailPassword = process.env.EMAIL_PASSWORD;
+
+// Create a transporter object using a Gmail account
+const transporter = nodemailer.createTransport({
+  service: 'hotmail',
+  auth: {
+    user: emailAddress,
+    pass: emailPassword,
+  },
+});
 
 router.get('/share', (req, res) => {
   const { postTitle, postContent } = req.query;
@@ -12,7 +26,7 @@ router.post('/share-post', async (req, res) => {
 
     // Send the email
     const mailOptions = {
-      from: 'your_email_address',
+      from: emailAddress,
       to: userEmail,
       subject: `Check out this post: ${postTitle}`,
       text: postContent,
