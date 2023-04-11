@@ -59,8 +59,8 @@ nav {
 }
 
 .post-link:hover {
-  font-style: oblique;
   color: rgb(90, 11, 155);
+  background-color: lightblue;
 }
 
 .post-author {
