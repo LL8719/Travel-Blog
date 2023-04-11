@@ -33,8 +33,8 @@ router.post('/share-post', async (req, res) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log(`Email sent: ${info.response}`);
-    res.status(200).send('Email sent successfully');
+    // console.log(`Email sent: ${info.response}`);
+    res.redirect('/dashboard');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error sending email');
