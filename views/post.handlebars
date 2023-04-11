@@ -9,8 +9,8 @@
     <button class="btn btn-primary post-delete" data-id="{{id}}">Delete</button>
   </p>
 
-   <a href="/share?postTitle={{title}}&postContent={{content}}">Click here to share the post</a>
-   
+  <a href="/share?postTitle={{title}}&postContent={{content}}">Click here to share the post</a>
+
 </div>
 
 <div class="old-post-form col-md-12" style="display: none" id="old-post-form">
@@ -24,20 +24,25 @@
       <label for="byLocation">Location</label>
       <textarea class="form-input" id="byLocation" name="byLocation">{{location}}</textarea>
     </div>
-    <div class="row">
-      <input type="checkbox" id="petFriendly" name="petFriendly" checked={{petFriendly}}>
-      <label for="petFriendly" >🐕‍🦺</label><br>
-      <input type="checkbox" id="familyFriendly" name="familyFriendly" checked={{familyFriendly}}>
-      <label for="familyFriendly">👶</label><br>
+    <div class="type-search">
+      <div class="pet">
+        <input type="checkbox" id="petFriendly" name="petFriendly" checked={{petFriendly}}>
+        <label for="petFriendly">🐕‍🦺</label><br>
+      </div>
+      <div class="family">
+        <input type="checkbox" id="familyFriendly" name="familyFriendly" checked={{familyFriendly}}>
+        <label for="familyFriendly">👶</label><br>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="post-content">Content</label>
-      <textarea class="form-input" id="post-content" name="post-content">{{content}}</textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary form-save" data-id="{{id}}">Save</button>
-    </div>
-  </form>
+</div>
+<div class="form-group">
+  <label for="post-content">Content</label>
+  <textarea class="form-input" id="post-content" name="post-content">{{content}}</textarea>
+</div>
+<div class="form-group">
+  <button type="submit" class="btn btn-primary form-save" data-id="{{id}}">Save</button>
+</div>
+</form>
 </div>
 
 <script src="/js/post.js"></script>
