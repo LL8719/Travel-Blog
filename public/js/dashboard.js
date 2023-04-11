@@ -4,13 +4,13 @@ const newPostHandler = async (event) => {
   const newPost = document.querySelector('.create-button');
   const postForm = document.getElementById('new-post-form');
   
-  if(newPost.innerText == "New Post"){
+  if(newPost.innerText == "NEW POST"){
     postForm.style.display = "block";
-    newPost.innerText = "Cancel";
+    newPost.innerText = "CANCEL";
   }
   else{
     postForm.style.display = "none";
-    newPost.innerText = "New Post";
+    newPost.innerText = "NEW POST";
   }
 }
 
@@ -41,7 +41,7 @@ const newFormHandler = async (event) => {
   };
   
   document
-  .querySelector('.new-post')
+  .querySelector('.create-button')
   .addEventListener('click', newPostHandler);
 
   document
