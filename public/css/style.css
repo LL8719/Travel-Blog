@@ -92,13 +92,24 @@ nav {
 .all-comments {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 
 .comment {
-  border: solid 1px black;
-  margin: 2px;
-  padding: 2px;
+  border: 1px solid lightblue;
+  margin: 5px;
+  padding: 5px 0 0 5px;
   width: auto;
+}
+
+.comment-user {
+  border-bottom: 1px dashed lightblue;
+  margin-bottom: 5px;
+}
+
+.comment-text {
+  padding: 0;
+  margin: 5px;
 }
 
 .homepage {
