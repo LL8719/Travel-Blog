@@ -216,8 +216,8 @@ router.get('/homepage', async (req, res) => {
       ],
     });
     }
-    // Serialize data so the template can read it
-    const posts = postData.map((post) => post.get({ plain: true }));
+    // Serialize and reverse data so the template can read it from the last to the first
+    const posts = postData.map((post) => post.get({ plain: true })).reverse();
 
     // Pass serialized data and session flag into template
     res.render('homepage', {
