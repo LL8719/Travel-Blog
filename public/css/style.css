@@ -47,6 +47,11 @@ nav {
 
 /* homepage */
 
+img {
+  max-width: 350px;
+  max-height: 350px;
+}
+
 .post {
   margin: 0;
   font-size: 16pt;
