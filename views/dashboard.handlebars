@@ -1,7 +1,8 @@
 <div class="dashboard-page">
-  <div class="">
+  <div>
     <h2>Your Dashboard</h2>
   </div>
+  
   <div class="new-post-form" style="display: none" id="new-post-form">
     <h3>Create New Post</h3>
     <form class="form new-blog-form">
@@ -38,10 +39,10 @@
   </div>
 
   {{#if posts.length}}
-  <div class="col-md-12 post-list">
+  <div class="post-list">
     {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-12">
+    <div>
+      <div>
         <h4><a href="/post/{{post.id}}">{{post.title}} {{format_date post.date_created}}</a></h4>
         <h4>{{post.date_created}}</h4>
       </div>
@@ -50,7 +51,7 @@
   </div>
   {{/if}}
 </div>
-<div class="new-post col-md-12 text-center">
+<div class="new-post">
   <button class="btn btn-primary create-button">New Post</button>
 </div>
 
