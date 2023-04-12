@@ -22,11 +22,7 @@ router.put('/:id', withAuth, async (req, res) => {
     console.debug(req.body);
     try {
         const existingPost = await Posts.update({
-            title: req.body.title,
-            location: req.body.location,
-            petFriendly: req.body.petFriendly,
-            familyFriendly: req.body.familyFriendly,
-            content: req.body.content,
+            ...req.body,
         },
             {
                 where: {

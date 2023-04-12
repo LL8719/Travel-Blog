@@ -28,11 +28,11 @@ const filterInputHandler = async (event) => {
     const petFriendly = document.querySelector('#petFriendly').checked;
     const familyFriendly = document.querySelector('#familyFriendly').checked;
 
-    let locationFilter = "";
+    let locationFilter = `location=${location}&`;
     let petFilter = "";
     let familyFilter = "";
 
-    if(location != ""){ locationFilter = `location=${location}&`; }
+    //if(location != ""){ locationFilter = `location=${location}&`; }
     if(petFriendly){ petFilter = "petFriendly=true&"; }
     if(familyFriendly){ familyFilter = "familyFriendly=true"; }
 

@@ -30,6 +30,9 @@
       {{content}}
     </p>
   </div>
+  <div>
+  <img src={{image}}></img>
+  </div>
   <div class="likes-group">
     <button type="click" like-value=1 data-id={{id}}>👍{{Liked.length}}</button>
     <button type="click" like-value=-1 data-id={{id}}>👎{{Disliked.length}}</button>
@@ -46,5 +49,3 @@
 {{/each}}
 
 <script src="/js/homepage.js"></script>
-
-<script src="/js/allposts.js"></script>

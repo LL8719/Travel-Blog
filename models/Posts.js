@@ -58,6 +58,10 @@ Post.init(
       allowNull: true,
       defaultValue: false,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   },
   {
     sequelize,
