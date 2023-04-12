@@ -9,8 +9,8 @@
     <button class="btn btn-primary post-delete" data-id="{{id}}">Delete</button>
   </p>
 
-   <a href="/share?postTitle={{title}}&postContent={{content}}">Click here to share the post</a>
-   
+  <a href="/share?postTitle={{title}}&postContent={{content}}">Click here to share the post</a>
+
 </div>
 
 <div class="old-post-form col-md-12" style="display: none" id="old-post-form">
@@ -26,9 +26,13 @@
     </div>
     <div class="row">
       <input type="checkbox" id="petFriendly" name="petFriendly" {{#if petFriendly}}checked{{/if}}>
-      <label for="petFriendly" >🐕‍🦺</label><br>
+      <label for="petFriendly">🐕‍🦺</label><br>
       <input type="checkbox" id="familyFriendly" name="familyFriendly" {{#if familyFriendly}}checked{{/if}}>
       <label for="familyFriendly">👶</label><br>
+    </div>
+    <div class="image">
+      <label for="image">Image URL</label>
+      <input type="text" id="image" name="image" value={{image}}>
     </div>
     <div class="form-group">
       <label for="post-content">Content</label>

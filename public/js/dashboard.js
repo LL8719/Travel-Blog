@@ -22,11 +22,12 @@ const newFormHandler = async (event) => {
     const location = document.querySelector('#byLocation').value.trim();
     const petFriendly = document.querySelector('#petFriendly').checked;
     const familyFriendly = document.querySelector('#familyFriendly').checked;
+    const image = document.querySelector('#image').value.trim();
   
     if (title && content) {
       const response = await fetch(`/api/posts`, {
         method: 'POST',
-        body: JSON.stringify({ title, content, location, petFriendly, familyFriendly }),
+        body: JSON.stringify({ title, content, location, petFriendly, familyFriendly, image }),
         headers: {
           'Content-Type': 'application/json',
         },
