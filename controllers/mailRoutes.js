@@ -8,7 +8,7 @@ const emailPassword = process.env.EMAIL_PASSWORD;
 
 // Create a transporter object using a Gmail account
 const transporter = nodemailer.createTransport({
-  service: 'hotmail',
+  service: 'outlook',
   auth: {
     user: emailAddress,
     pass: emailPassword,
@@ -33,7 +33,8 @@ router.post('/share-post', async (req, res) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    // console.log(`Email sent: ${info.response}`);
+    console.log(`Email sent: ${info.response}`);
+
     res.redirect('/dashboard');
   } catch (error) {
     console.error(error);
